@@ -1,0 +1,32 @@
+
+
+uiphone:
+	package: 'com.android.contacts'
+
+	versions:
+		v0.1:
+			screens:
+				contacts:
+					doc: "main screen for phone application , have 4 tabs"
+					selector_check: ''
+					selector_tabs: 'android:id/action_bar_container' 
+					selector_menu_path: '0/0'
+					tabs :
+						- keypad
+						- logs
+						- favorites
+						- contacts
+					_tabs:
+						keypad:
+							doc: "keypad to dial numbers ..."
+							selector_check: ''
+							selectors:
+								one: {}
+								star: {}
+						logs: {}
+						favorites: {}
+						contacts: {}
+				inuicall: {}
+
+
+

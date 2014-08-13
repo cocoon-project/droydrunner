@@ -1,0 +1,155 @@
+
+
+doc: |
+
+	web interface to DroydRunner
+
+	/phone_accounts
+
+	/sessions
+	/sessions/<session>
+
+	/agents ?session=
+
+	/agents/<agent>
+	/agents/<agent>/call_user   ? user:str  
+	/agents/<agent>/call_number ? number:str
+	/agents/<agent>/wait_incoming_call
+	/agents/<agent>/answer_call
+	/agents/<agent>/reject_call
+	/agents/<agent>/hangup
+
+	an agent is a phone_account (user or device) within a session eg Alice-a34be
+
+		create session
+			POST /sessions ? phone_accounts:dict
+
+		add agent to session
+			POST /agents ? session:str phone_account:str conf:dict
+				return a list of session agents
+					eg Alice_a34be , Bob_a34be
+
+		drive agent (operations)
+			POST /agents/<agent>/call_user ? phone_account:str
+
+			POST /agents/<agent>/wait_incoming_call
+			POST /agents/<agent>/answer_call
+
+			POST /agents/<agent>/hangup
+
+		close session
+			DELETE /session/<sessionId>
+
+
+		sample
+		### create session
+		POST /session 
+			body:
+				-
+					agent: Alice 
+					conf: {}
+				-
+					agent: Bob
+					conf: {}
+			return  ( agents)
+				session: 
+					url: /session/a34be
+				Alice:
+					url: /agents/Alice-a34be
+				Bob: 
+					url: /agents/Bob-a34be
+
+		### Alice call Number
+		POST /agents/Alice-a34be/call_number
+			body:
+				number: bob s number
+
+		### Bob waiting for incoming call
+		POST /agents/Bob-a34be/wait_incoming_call
+
+		### bob answer call
+		POST /agents/Bob-a34be/answer_call
+
+		### Alice hangup call
+		POST /agents/Alice-a34be/hangup
+
+		### end session
+		DELETE /session/a34be
+
+api:
+	v1:
+		platforms:
+			doc: "telephony platform eg btic ,btelu , volte"
+			cat: collection
+			url: /platforms
+
+		platform_instances:
+			doc: "instance of a platform eg btelu-qualif contains configuration for phone accounts ..."
+			cat: collections
+			url: /platform_instances
+
+		phone_accounts:
+			doc: "users or devices eg Alice, Bob or device_id of a mobile, belonging to a platform_instance"
+			cat: collection
+			url: /phone_accounts
+
+		sessions:
+			doc: "session collection"
+			cat: collection
+			url: /sessions
+
+		agents:
+			doc: agents of a session 
+			cat: collection
+			url: /agents
+			operation_list:
+				- call_number
+				- wait_incoming_call
+				- answer_call
+				- reject_call
+				- hangup
+				- _dummy
+			operations:
+				# operations on agent items
+				call_number:
+					doc: "agent place a call to number"
+					cat: operation
+					url: '/agents/<agent>/call_number'
+					POST:
+						args:
+							number: 
+								doc: the target number to call
+								type: str
+				wait_incoming_call:
+					doc: "agent wait for incoming call"
+					cat: operation
+					url: '/agents/<agent>/wait_incoming_call'
+					POST:
+						args: {}
+				answer_call:
+					doc: "agent answer call"
+					cat: operation
+					url: '/agents/<agent>/answer_call'
+					POST:
+						args: {}
+				reject_call:
+					doc: "agent reject call"
+					cat: operation
+					url: '/agents/<agent>/reject_call'
+					POST:
+						args: {}
+				hangup:
+					doc: "agent reject call"
+					cat: operation
+					url: '/agents/<agent>/hangup'
+					POST:
+						args: {}
+				_dummy:
+					# sample of operation on collection ( prefixed with _)
+					doc: Do nothing but on a collection instead of an item
+					cat: collection_operation dummy
+					url: '/agents/-/dummy'
+					POST:
+						args:{}
+
+
