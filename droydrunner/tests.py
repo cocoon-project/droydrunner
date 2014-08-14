@@ -914,7 +914,9 @@ def test_new_robot_plugin():
 
 
     """
-    filename = '../platform.json'
+    #filename = '../platform.json'
+
+    filename = '../samples/robot/mobile/platform.json'
 
     Alice = "e7f54be6"
     Bob = "388897e5"
