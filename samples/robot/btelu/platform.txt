@@ -1,0 +1,163 @@
+*** Settings ***
+Documentation     platform settings for platform btelu
+...
+
+Library 	syprunner.robot_plugin.Pilot
+
+
+*** Variables ***
+${platform_name}=	btelu
+
+@{all_call_formats}=  sid_ext  national  international  universal
+
+
+*** Keywords ***
+
+Unit CallForwardNotAnswered
+    [Documentation]     A call B, B does not answer , call redirected to C , C answers
+    [Arguments]     ${userA}    ${userB}    ${userC}    ${formatA}
+    Open Session    ${userA}    ${userB}    ${userC}
+
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userB}
+    answer_call    ${userB}    180
+    wait_incoming_call    ${userC}
+    answer_call    ${userC}    180
+    answer_call    ${userC}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    Close Session
+
+Unit CallForwardBusy
+    [Documentation]  D call B so B busy, A call B redirected to C , C answers
+    [Arguments]     ${userA}    ${userB}    ${userC}    ${userD}    ${formatA}  ${formatB}
+    Open Session    ${userA}    ${userB}    ${userC}    ${userD}
+
+    # B call D , so B busy
+    call_user    ${userB}    ${userD}    ${formatB}
+    wait_incoming_call    ${userD}
+    answer_call    ${userD}    180
+    answer_call    ${userD}    200
+    wait_call_confirmed    ${userB}
+    # now B busy , A call B
+    call_user    ${userA}    ${userB}    ${formatA}
+    # A is CFB to C
+    wait_incoming_call    ${userC}
+    answer_call    ${userC}    180
+    answer_call    ${userC}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    hangup    ${userB}
+    #sleep    1
+    Close Session
+
+Unit CallFeatureAccessCode
+    [Documentation]     Call AS with a Feature access code
+    [Arguments]     ${userA}    ${FAC}  ${userB}=${empty}   ${format}=${empty}
+
+    # run fac standard case
+    run keyword and return if  '${platform_name}'!='btelu'  Unit standard CallFeaturAccessCode  ${userA}  ${FAC}  ${userB}  ${format}
+    # run the special fac for buggy 480 on btelu
+    run keyword  Unit btelu CallFeatureAccessCode  ${userA}  ${FAC}  ${userB}  ${format}
+
+Unit standard CallFeatureAccessCode
+    [Documentation]     Call AS with a Feature access code
+    [Arguments]     ${userA}    ${FAC}  ${userB}=${empty}   ${format}=${empty}
+    Open Session    ${userA}
+    call_feature_access_code    ${userA}    ${FAC}  ${userB}    ${format}
+    log    'wait for AS to disconnect'
+    Wait Hangup  ${userA}
+    Close Session
+
+
+Unit btelu CallFeatureAccessCode
+    [Documentation]   btelu version for: Call AS with a Feature access code
+    [Arguments]     ${userA}    ${FAC}  ${userB}=${empty}   ${format}=${empty}
+    Open Session    ${userA}
+
+    call_feature_access_code    ${userA}    ${FAC}  ${userB}    ${format}
+
+    # special case for btelu platform bug
+    wait_sip_response    ${userA}    480
+    log    'wait for AS to disconnect'
+
+    wait_call_disconnected    ${userA}
+    Close Session
+
+
+
+
+Unit 5691
+    [Documentation]     A call B , B ringing but not answers, A wait for timeout
+    [Arguments]     ${userA}    ${userB}    ${formatA}
+    Open Session    ${userA}    ${userB}
+
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userB}
+    answer_call    ${userB}    180
+    wait_timed_out    ${userA}
+    #sleep    1
+    Close Session
+
+Unit CallForwardNotRegistred_main
+    [Documentation]     B unregisters, A call B , call redirected to C, C answers
+    [Arguments]     ${userA}    ${userB}    ${userC}    ${formatA}
+    Open Session    ${userA}    ${userB}    ${userC}
+
+    unregister    ${userB}
+    #sleep    1
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userC}
+    answer_call    ${userC}    180
+    answer_call    ${userC}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    Close Session
+
+Unit CallForwardAlways
+    [Documentation]  A call B, call redirected to C, C answers
+    [Arguments]     ${userA}    ${userB}    ${userC}    ${formatA}
+    Open Session    ${userA}    ${userB}    ${userC}
+
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userC}
+    answer_call    ${userC}    180
+    answer_call    ${userC}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    Close Session
+
+Unit AB_REGISTER_A_CALL_B_PLAY_BYE
+    [Documentation]  simple call AB, A call B , B rings and answers OK
+    [Arguments]     ${userA}    ${userB}    ${formatA}
+    Open Session    ${userA}    ${userB}
+
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userB}
+    answer_call    ${userB}    180
+    answer_call    ${userB}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    Close Session
+
+Unit CallForwardUnavailable
+    [Documentation]  A call B , B reject call with 480, call is redirected to C, C answers OK
+    [Arguments]     ${userA}    ${userB}    ${userC}    ${formatA}
+    Open Session    ${userA}    ${userB}    ${userC}
+
+    call_user    ${userA}    ${userB}    ${formatA}
+    wait_incoming_call    ${userB}
+    answer_call    ${userB}    480
+    wait_incoming_call    ${userC}
+    answer_call    ${userC}    180
+    answer_call    ${userC}    200
+    wait_call_confirmed    ${userA}
+    #sleep    1
+    hangup    ${userA}
+    Close Session
+

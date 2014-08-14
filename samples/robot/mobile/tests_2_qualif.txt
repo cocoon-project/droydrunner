@@ -1,0 +1,88 @@
+*** Settings ***
+Documentation     launch with pybot -vplatform_name:? -vplatform_version:?
+...
+
+Resource   ../common.txt
+Resource   platform.txt
+
+#Suite Setup  init suite
+Test Setup 	init pilot
+Test Teardown 	shutdown pilot
+
+
+*** Variables ***
+# the variable name must be given on the command line
+${platform_name}= 	mobile
+${platform_version}=	mobile_qualif
+
+#${pilot_mode}=  dry
+${pilot_mode}=  normal
+
+@{require_user_capabilities}=  Alice  Bob
+@{require_call_format_capabilities}=  sid_ext
+@{require_feature_access_code_capabilities}=  CFA  CFB
+
+
+
+# setup users with device id
+${Alice}=   e7f54be6
+${Bob}= 	388897e5
+
+
+
+
+
+*** keywords ***
+
+
+Unit Call Number
+    [arguments]     ${userA}    ${userB} 	${number}
+
+    Open Session     ${userA}    ${userB}
+
+    call number 	${userA}    ${number}
+
+    wait incoming call  ${userB}
+    answer call     ${userB}
+
+    BuiltIn.Sleep 	5
+
+    hangup  ${userA}
+
+    #Close Session
+
+
+Unit Call User
+    [arguments]     ${userA}    ${userB}
+
+    Open Session     ${userA}    ${userB}
+
+    call user 	${userA}    ${userB}
+
+    wait incoming call  ${userB}
+    answer call     ${userB}
+
+    BuiltIn.Sleep 	5
+
+    hangup  ${userA}
+
+    #Close Session
+
+
+*** Test Cases ***
+
+
+# A simple call
+# 	Unit Call Number    Alice    Bob 	${Bob_number}
+
+# Another simple call
+
+#     Unit Call Number 	Bob 	Alice 	${Alice_number}
+
+
+test1
+    Unit Call User 	${Alice} 	${Bob}
+
+test2
+    Unit Call User  ${Bob}    ${Alice}
+

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20140814 10:58:04.586" generator="Robot 2.8.3 (Python 2.7.3 on darwin)">
+<suite source="/Users/cocoon/Documents/projects/UiAutomator/samples/robot/mobile/tests_2_qualif.txt" id="s1" name="Tests 2 Qualif">
+<test id="s1-t1" name="test1">
+<kw type="setup" name="common.init pilot">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Setup Pilot">
+<doc>initialize pilot with platform configuration file</doc>
+<arguments>
+<arg>${platform_name}</arg>
+<arg>${platform_version}</arg>
+<arg>${platform_configuration_file}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:04.811" level="INFO">setting up platform pilot for platform=mobile , version=mobile_qualif</msg>
+<status status="PASS" endtime="20140814 10:58:04.811" starttime="20140814 10:58:04.809"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${pilot_mode}'=='dry'</arg>
+<arg>set pilot dry mode</arg>
+</arguments>
+<status status="PASS" endtime="20140814 10:58:04.812" starttime="20140814 10:58:04.811"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:58:04.812" starttime="20140814 10:58:04.808"></status>
+</kw>
+<kw type="kw" name="Unit Call User">
+<doc></doc>
+<arguments>
+<arg>${Alice}</arg>
+<arg>${Bob}</arg>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Open Session">
+<doc>open a session : start session with a terminal per user specified</doc>
+<arguments>
+<arg>${userA}</arg>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:19.581" level="INFO">Pilot initialisation conf = {u'destinations': {u'wrong_Sid_E1S1': u'112527', u'wrong_Sid_E1S2': u'122518', u'Alice_SD_4': 4, u'wrong_PrivateNumber': u'112527', u'Alice_SD_3': 3, u'Alice_SD_2': 2, u'wrong_FeatureAccessCode_1': u'*100', u'wrong_Extension': u'00000', u'unallocatedNumbers': [113333, 122222, 26626340, 2517456, 112190], u'sharp': u'#', u'Alice_noSDA_SD_3': 3, u'Alice_noSDA_SD_2': 2, u'wrong_FeatureAccessCode_2': u'*72', u'unallocatedNumber_1': u'113333', u'Alice_noSDA_SD_4': 4}, u'main': {u'profile': u'ims', u'platform_version': u'val60', u'domain': u'sip.osp.com', u'local_port_policy': 0, u'platform_name': u'BTelu', u'proxy': u'80.12.197.168:5060', u'ApplicationServerUrl': u'http://10.198.236.221:83/Login', u'password': u'nsnims2008', u'platform_dir': u'/opt/wheezyvalid', u'easy_runner': u'SypRunner'}, u'FeatureAccessCode': {u'+DVMT': [u'*55', u'Direct Voice Mail Transfer'], u'-CWP': [u'*431*', u'Call Waiting Persistent Deactivation'], u'+CFB': [u'74*2', u'CFB Activation , CallForward Busy Activation'], u'-CFS': [u'*271*', u'Call Forwarding Selective Activation'], u'+ExAOin': [u'#65', u'Executive-Assistant Opt-in'], u'-CLIR': [u'#3651', u'Call Line ID Delivery overiding , per call when permanent Line Identity Restriction'], u'-CFU': [u'71*0', u'Call Forward Always Deactivation'], u'+CFU': [u'71*', u'CFA Activation Call Forward Always'], u'+DND': [u'*78', u'Do Not Disturb Activation'], u'-DND': [u'*79', u'Do Not Disturb DeActivation'], u'+CFS': [u'*270*', u'Call Forwarding Selective Activation'], u'-CFB': [u'74*0', u'CFB DeActivation , CallForward Busy DeActivation'], u'-CFA': [u'71*0', u'Call Forward Always Deactivation'], u'+CFA': [u'71*', u'CFA Activation Call Forward Always'], u'-LC': [u'*13', u'Location Control deactivation'], u'+LC': [u'*12', u'Location Control activation'], u'+ExACP': [u'#63', u'Executive-Assistant Call Push'], u'+CFUV': [u'74*4', u'CFUV Activation,    Call Forward Not Available Activation'], u'-CFUV': [u'74*0', u'CFUV DeActivation,    Call Forward Not Available DeActivation'], u'+SD100': [u'*75', u'Speed Dial 100'], u'+ACR': [u'*77', u'Anonymous Call Rejection activation'], u'+CB': [u'*15', u'CAll Bridge'], u'+DCPup': [u'*41', u'Directed Call Pickup'], u'+CPup': [u'*41*', u'Call Pickup'], u'+CLIR': [u'*3651', u'Call Line ID Delivery Blocking , per call, or Call Line Identity Restriction'], u'?CWP': [u'*53*', u'Call Waiting Interrogation'], u'+CPR': [u'*88', u'Call Park Retrieve'], u'+CP': [u'*62', u'Call Park'], u'+CR': [u'*31', u'Call Return activation'], u'-CR': [u'*311*', u'Call Return deactivation (Number Deletion)'], u'+ExAIC': [u'#64', u'Executive-Assistant Initiate Call'], u'+BAE164D': [u'*14', u'Broadworks Anywhere E.164 Dialing'], u'-ACR': [u'*87', u'Anonymous Call Rejection deactivation'], u'-CFNR': [u'74*0', u'CFNR DeActivation,    Call Forward Not Reachable DeActivation'], u'+SD8': [u'*74', u'Speed Dial 8'], u'+CWP': [u'*43*', u'Call Waiting Persistent Activation'], u'+LNR': [u'*33', u'Last Number Redial'], u'+CFNA': [u'74*3', u'CFNA Activation , Call Forward No Answer Activation'], u'?ACR': [u'*52*', u'Anonymous Call Rejection Interrogation'], u'-CFNA': [u'74*0', u'CFNA DeActivation , Call Forward No Answer DeActivation'], u'?CFNR': [u'*242*', u'CFNR Interrogation,    Call Forward Not Reachable Interrogation'], u'+ExAOout': [u'#66', u'Executive-Assistant Opt-out'], u'+CFNR': [u'74*5', u'CFNR Activation,    Call Forward Not Reachable Activation']}, u'mobiles': {u'e7f54be6': {u'tel': u'0684820364', u'name': u'Caller', u'pin': u'', u'sim': u'0000'}, u'388897e5': {u'tel': u'0640412593', u'name': u'Callee', u'pin': u'', u'sim': u'0000'}}, u'enterprises': {u'enterprise_1': {u'sites': {u'site_2': {u'CallingLineIDGroupNumber': u'0146502525', u'CallingLineIDGroupName': u'CLID_2361EVQ2', u'LocationDialingCode': u'12', u'name': u'2361EVQ2', u'users': {u'Dave_InterSite': {u'username': u'+33146502530'}, u'Bob_InterSite': {u'username': u'+33960833532'}, u'Charlie_InterSite': {u'username': u'+33146502529'}, u'Bob_InterSite_noSDA': {u'username': u'P2361EVQ2_6320', u'number': u'6320'}, u'Alice_InterSite': {u'username': u'+33146502527'}, u'Alice_InterSite_noSDA': {u'username': u'P2361EVQ2_6321', u'number': u'6321'}}}, u'site_1': {u'CallingLineIDGroupNumber': u'0146502512', u'CallingLineIDGroupName': u'CLID_2361EVQ1', u'LocationDialingCode': u'83', u'name': u'2361EVQ1', u'users': {u'Bob_SAC': {u'username': u'+33960833577'}, u'Bob_noSDA': {u'username': u'P2361EVQ1_6311', u'number': u'6311'}, u'Charlie_SAC': {u'username': u'+33960833578'}, u'Charlie': {u'username': u'+33960833534'}, u'Bob_Short_Target': {u'username': u'+33146502523'}, u'Dave_SAC': {u'username': u'+33960833579'}, u'Alice': {u'username': u'+33960833530'}, u'Erin': {u'username': u'+33146502518'}, u'Dave': {u'username': u'+33146502517'}, u'Alice_SAC': {u'username': u'+33960833576'}, u'Alice_noSDA': {u'username': u'P2361EVQ1_6310', u'number': u'6310'}, u'Bob_noSDA_Short': {u'username': u'P2361EVQ1_6312', u'number': u'6312', u'target': u'Bob_Short_Target'}, u'Bob': {u'username': u'+33960833531'}, u'Bob_RCV_CFC': {u'username': u'+33960833539'}, u'Charlie_CFC': {u'username': u'+33960833536'}}}, u'virtual': {u'name': u'virtual', u'users': {u'Bob_Abbreviated': {u'username': u'3212', u'target': u'Bob_Abbreviated_Target', u'virtual': u'true'}}}}, u'name': u'LPRISMEVQ1', u'CID': 0}, u'enterprise_2': {u'sites': {u'site_1': {u'CallingLineIDGroupNumber': u'0146502533', u'CallingLineIDGroupName': u'CLID_2361EVQ3', u'LocationDialingCode': u'21', u'name': u'2361EVQ3', u'users': {u'Bob_InterEnterprise_noSDA': {u'username': u'P2361EVQ3_6331'}, u'Bob_InterEnterprise': {u'username': u'+33960833532'}, u'Alice_InterEnterprise_noSDA': {u'username': u'P2361EVQ3_6330'}, u'Bob_Abbreviated_Target': {u'username': u'+33146502538'}, u'Alice_InterEnterprise': {u'username': u'+33146502550'}}}}, u'name': u'LPRISMEVQ2', u'CID': 0}}} 
+Open Session with users: (u'e7f54be6', u'388897e5')
+pilot: Start Agent: e7f54be6 with role: e7f54be6
+pilot: open phone for user e7f54be6
+pilot: Start Agent: 388897e5 with role: 388897e5
+pilot: open phone for user 388897e5</msg>
+<status status="PASS" endtime="20140814 10:58:19.582" starttime="20140814 10:58:04.813"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Call User">
+<doc>userA call userX with format (universal,national ...)</doc>
+<arguments>
+<arg>${userA}</arg>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:29.213" level="INFO">user e7f54be6 call user 388897e5 at 0640412593</msg>
+<status status="PASS" endtime="20140814 10:58:29.213" starttime="20140814 10:58:19.583"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Wait Incoming Call">
+<doc>wait an incoming call  (INVITE)</doc>
+<arguments>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:37.755" level="INFO">user 388897e5 wait for incoming call
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+incoming call popup screen detected
+popup: caller is France</msg>
+<status status="PASS" endtime="20140814 10:58:37.755" starttime="20140814 10:58:29.214"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Answer Call">
+<doc>answer a pending call with code</doc>
+<arguments>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:39.496" level="INFO">user 388897e5 sends code 200
+answering call
+answers with success</msg>
+<status status="PASS" endtime="20140814 10:58:39.496" starttime="20140814 10:58:37.756"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20140814 10:58:44.499" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20140814 10:58:44.499" starttime="20140814 10:58:39.497"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Hangup">
+<doc>hangup a call</doc>
+<arguments>
+<arg>${userA}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:46.470" level="INFO">user e7f54be6 hangup the call</msg>
+<status status="PASS" endtime="20140814 10:58:46.470" starttime="20140814 10:58:44.499"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:58:46.471" starttime="20140814 10:58:04.812"></status>
+</kw>
+<kw type="teardown" name="common.shutdown pilot">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Close Session">
+<doc>close session , unregister all users and quit</doc>
+<arguments>
+</arguments>
+<msg timestamp="20140814 10:58:50.942" level="INFO">Close Session
+pilot: shutdown ...
+pilot: shutdown agent
+pilot: shutdown agent
+pilot: shutdown completed
+pilot: &lt;*&gt; Test uiphone completed successfully</msg>
+<status status="PASS" endtime="20140814 10:58:50.942" starttime="20140814 10:58:46.472"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:58:50.943" starttime="20140814 10:58:46.471"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20140814 10:58:50.943" critical="yes" starttime="20140814 10:58:04.807"></status>
+</test>
+<test id="s1-t2" name="test2">
+<kw type="setup" name="common.init pilot">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Setup Pilot">
+<doc>initialize pilot with platform configuration file</doc>
+<arguments>
+<arg>${platform_name}</arg>
+<arg>${platform_version}</arg>
+<arg>${platform_configuration_file}</arg>
+</arguments>
+<msg timestamp="20140814 10:58:50.947" level="INFO">setting up platform pilot for platform=mobile , version=mobile_qualif</msg>
+<status status="PASS" endtime="20140814 10:58:50.947" starttime="20140814 10:58:50.946"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${pilot_mode}'=='dry'</arg>
+<arg>set pilot dry mode</arg>
+</arguments>
+<status status="PASS" endtime="20140814 10:58:50.948" starttime="20140814 10:58:50.947"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:58:50.948" starttime="20140814 10:58:50.946"></status>
+</kw>
+<kw type="kw" name="Unit Call User">
+<doc></doc>
+<arguments>
+<arg>${Bob}</arg>
+<arg>${Alice}</arg>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Open Session">
+<doc>open a session : start session with a terminal per user specified</doc>
+<arguments>
+<arg>${userA}</arg>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:59:02.078" level="INFO">Pilot initialisation conf = {u'destinations': {u'wrong_Sid_E1S1': u'112527', u'wrong_Sid_E1S2': u'122518', u'Alice_SD_4': 4, u'wrong_PrivateNumber': u'112527', u'Alice_SD_3': 3, u'Alice_SD_2': 2, u'wrong_FeatureAccessCode_1': u'*100', u'wrong_Extension': u'00000', u'unallocatedNumbers': [113333, 122222, 26626340, 2517456, 112190], u'sharp': u'#', u'Alice_noSDA_SD_3': 3, u'Alice_noSDA_SD_2': 2, u'wrong_FeatureAccessCode_2': u'*72', u'unallocatedNumber_1': u'113333', u'Alice_noSDA_SD_4': 4}, u'main': {u'profile': u'ims', u'platform_version': u'val60', u'domain': u'sip.osp.com', u'local_port_policy': 0, u'platform_name': u'BTelu', u'proxy': u'80.12.197.168:5060', u'ApplicationServerUrl': u'http://10.198.236.221:83/Login', u'password': u'nsnims2008', u'platform_dir': u'/opt/wheezyvalid', u'easy_runner': u'SypRunner'}, u'FeatureAccessCode': {u'+DVMT': [u'*55', u'Direct Voice Mail Transfer'], u'-CWP': [u'*431*', u'Call Waiting Persistent Deactivation'], u'+CFB': [u'74*2', u'CFB Activation , CallForward Busy Activation'], u'-CFS': [u'*271*', u'Call Forwarding Selective Activation'], u'+ExAOin': [u'#65', u'Executive-Assistant Opt-in'], u'-CLIR': [u'#3651', u'Call Line ID Delivery overiding , per call when permanent Line Identity Restriction'], u'-CFU': [u'71*0', u'Call Forward Always Deactivation'], u'+CFU': [u'71*', u'CFA Activation Call Forward Always'], u'+DND': [u'*78', u'Do Not Disturb Activation'], u'-DND': [u'*79', u'Do Not Disturb DeActivation'], u'+CFS': [u'*270*', u'Call Forwarding Selective Activation'], u'-CFB': [u'74*0', u'CFB DeActivation , CallForward Busy DeActivation'], u'-CFA': [u'71*0', u'Call Forward Always Deactivation'], u'+CFA': [u'71*', u'CFA Activation Call Forward Always'], u'-LC': [u'*13', u'Location Control deactivation'], u'+LC': [u'*12', u'Location Control activation'], u'+ExACP': [u'#63', u'Executive-Assistant Call Push'], u'+CFUV': [u'74*4', u'CFUV Activation,    Call Forward Not Available Activation'], u'-CFUV': [u'74*0', u'CFUV DeActivation,    Call Forward Not Available DeActivation'], u'+SD100': [u'*75', u'Speed Dial 100'], u'+ACR': [u'*77', u'Anonymous Call Rejection activation'], u'+CB': [u'*15', u'CAll Bridge'], u'+DCPup': [u'*41', u'Directed Call Pickup'], u'+CPup': [u'*41*', u'Call Pickup'], u'+CLIR': [u'*3651', u'Call Line ID Delivery Blocking , per call, or Call Line Identity Restriction'], u'?CWP': [u'*53*', u'Call Waiting Interrogation'], u'+CPR': [u'*88', u'Call Park Retrieve'], u'+CP': [u'*62', u'Call Park'], u'+CR': [u'*31', u'Call Return activation'], u'-CR': [u'*311*', u'Call Return deactivation (Number Deletion)'], u'+ExAIC': [u'#64', u'Executive-Assistant Initiate Call'], u'+BAE164D': [u'*14', u'Broadworks Anywhere E.164 Dialing'], u'-ACR': [u'*87', u'Anonymous Call Rejection deactivation'], u'-CFNR': [u'74*0', u'CFNR DeActivation,    Call Forward Not Reachable DeActivation'], u'+SD8': [u'*74', u'Speed Dial 8'], u'+CWP': [u'*43*', u'Call Waiting Persistent Activation'], u'+LNR': [u'*33', u'Last Number Redial'], u'+CFNA': [u'74*3', u'CFNA Activation , Call Forward No Answer Activation'], u'?ACR': [u'*52*', u'Anonymous Call Rejection Interrogation'], u'-CFNA': [u'74*0', u'CFNA DeActivation , Call Forward No Answer DeActivation'], u'?CFNR': [u'*242*', u'CFNR Interrogation,    Call Forward Not Reachable Interrogation'], u'+ExAOout': [u'#66', u'Executive-Assistant Opt-out'], u'+CFNR': [u'74*5', u'CFNR Activation,    Call Forward Not Reachable Activation']}, u'mobiles': {u'e7f54be6': {u'tel': u'0684820364', u'name': u'Caller', u'pin': u'', u'sim': u'0000'}, u'388897e5': {u'tel': u'0640412593', u'name': u'Callee', u'pin': u'', u'sim': u'0000'}}, u'enterprises': {u'enterprise_1': {u'sites': {u'site_2': {u'CallingLineIDGroupNumber': u'0146502525', u'CallingLineIDGroupName': u'CLID_2361EVQ2', u'LocationDialingCode': u'12', u'name': u'2361EVQ2', u'users': {u'Dave_InterSite': {u'username': u'+33146502530'}, u'Bob_InterSite': {u'username': u'+33960833532'}, u'Charlie_InterSite': {u'username': u'+33146502529'}, u'Bob_InterSite_noSDA': {u'username': u'P2361EVQ2_6320', u'number': u'6320'}, u'Alice_InterSite': {u'username': u'+33146502527'}, u'Alice_InterSite_noSDA': {u'username': u'P2361EVQ2_6321', u'number': u'6321'}}}, u'site_1': {u'CallingLineIDGroupNumber': u'0146502512', u'CallingLineIDGroupName': u'CLID_2361EVQ1', u'LocationDialingCode': u'83', u'name': u'2361EVQ1', u'users': {u'Bob_SAC': {u'username': u'+33960833577'}, u'Bob_noSDA': {u'username': u'P2361EVQ1_6311', u'number': u'6311'}, u'Charlie_SAC': {u'username': u'+33960833578'}, u'Charlie': {u'username': u'+33960833534'}, u'Bob_Short_Target': {u'username': u'+33146502523'}, u'Dave_SAC': {u'username': u'+33960833579'}, u'Alice': {u'username': u'+33960833530'}, u'Erin': {u'username': u'+33146502518'}, u'Dave': {u'username': u'+33146502517'}, u'Alice_SAC': {u'username': u'+33960833576'}, u'Alice_noSDA': {u'username': u'P2361EVQ1_6310', u'number': u'6310'}, u'Bob_noSDA_Short': {u'username': u'P2361EVQ1_6312', u'number': u'6312', u'target': u'Bob_Short_Target'}, u'Bob': {u'username': u'+33960833531'}, u'Bob_RCV_CFC': {u'username': u'+33960833539'}, u'Charlie_CFC': {u'username': u'+33960833536'}}}, u'virtual': {u'name': u'virtual', u'users': {u'Bob_Abbreviated': {u'username': u'3212', u'target': u'Bob_Abbreviated_Target', u'virtual': u'true'}}}}, u'name': u'LPRISMEVQ1', u'CID': 0}, u'enterprise_2': {u'sites': {u'site_1': {u'CallingLineIDGroupNumber': u'0146502533', u'CallingLineIDGroupName': u'CLID_2361EVQ3', u'LocationDialingCode': u'21', u'name': u'2361EVQ3', u'users': {u'Bob_InterEnterprise_noSDA': {u'username': u'P2361EVQ3_6331'}, u'Bob_InterEnterprise': {u'username': u'+33960833532'}, u'Alice_InterEnterprise_noSDA': {u'username': u'P2361EVQ3_6330'}, u'Bob_Abbreviated_Target': {u'username': u'+33146502538'}, u'Alice_InterEnterprise': {u'username': u'+33146502550'}}}}, u'name': u'LPRISMEVQ2', u'CID': 0}}} 
+Open Session with users: (u'388897e5', u'e7f54be6')
+pilot: Start Agent: e7f54be6 with role: e7f54be6
+pilot: open phone for user e7f54be6
+pilot: Start Agent: 388897e5 with role: 388897e5
+pilot: open phone for user 388897e5</msg>
+<status status="PASS" endtime="20140814 10:59:02.079" starttime="20140814 10:58:50.948"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Call User">
+<doc>userA call userX with format (universal,national ...)</doc>
+<arguments>
+<arg>${userA}</arg>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:59:11.282" level="INFO">user 388897e5 call user e7f54be6 at 0684820364</msg>
+<status status="PASS" endtime="20140814 10:59:11.283" starttime="20140814 10:59:02.080"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Wait Incoming Call">
+<doc>wait an incoming call  (INVITE)</doc>
+<arguments>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:59:19.387" level="INFO">user e7f54be6 wait for incoming call
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+trying to detect incoming call ...
+incoming call popup screen detected
+popup: caller is +33 6 40 41 25 93</msg>
+<status status="PASS" endtime="20140814 10:59:19.387" starttime="20140814 10:59:11.283"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Answer Call">
+<doc>answer a pending call with code</doc>
+<arguments>
+<arg>${userB}</arg>
+</arguments>
+<msg timestamp="20140814 10:59:21.248" level="INFO">user e7f54be6 sends code 200
+answering call
+answers with success</msg>
+<status status="PASS" endtime="20140814 10:59:21.248" starttime="20140814 10:59:19.388"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20140814 10:59:26.250" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20140814 10:59:26.250" starttime="20140814 10:59:21.248"></status>
+</kw>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Hangup">
+<doc>hangup a call</doc>
+<arguments>
+<arg>${userA}</arg>
+</arguments>
+<msg timestamp="20140814 10:59:27.982" level="INFO">user 388897e5 hangup the call</msg>
+<status status="PASS" endtime="20140814 10:59:27.982" starttime="20140814 10:59:26.251"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:59:27.983" starttime="20140814 10:58:50.948"></status>
+</kw>
+<kw type="teardown" name="common.shutdown pilot">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="droydrunner.robot_plugin.Pilot.Close Session">
+<doc>close session , unregister all users and quit</doc>
+<arguments>
+</arguments>
+<msg timestamp="20140814 10:59:32.815" level="INFO">Close Session
+pilot: shutdown ...
+pilot: shutdown agent
+pilot: shutdown agent
+pilot: shutdown completed
+pilot: &lt;*&gt; Test uiphone completed successfully</msg>
+<status status="PASS" endtime="20140814 10:59:32.815" starttime="20140814 10:59:27.985"></status>
+</kw>
+<status status="PASS" endtime="20140814 10:59:32.815" starttime="20140814 10:59:27.984"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20140814 10:59:32.815" critical="yes" starttime="20140814 10:58:50.944"></status>
+</test>
+<doc>launch with pybot -vplatform_name:? -vplatform_version:?
+</doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20140814 10:59:32.817" starttime="20140814 10:58:04.587"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" pass="2" id="s1" name="Tests 2 Qualif">Tests 2 Qualif</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

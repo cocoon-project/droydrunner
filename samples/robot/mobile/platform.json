@@ -1,0 +1,356 @@
+{
+    "mobile_qualif": {
+
+        "mobiles": {
+
+            "388897e5" : {  "name": "Callee" , "pin": "" , "sim": "0000", "tel":"0640412593"  },
+
+            "e7f54be6":  {  "name": "Caller" , "pin": "" , "sim": "0000", "tel":"0684820364"}
+        },
+
+        "enterprises": {
+            "enterprise_1": {
+                "CID": 0, 
+                "sites": {
+                    "site_2": {
+                        "CallingLineIDGroupNumber": "0146502525", 
+                        "LocationDialingCode": "12", 
+                        "users": {
+                            "Dave_InterSite": {
+                                "username": "+33146502530"
+                            }, 
+                            "Charlie_InterSite": {
+                                "username": "+33146502529"
+                            }, 
+                            "Bob_InterSite_noSDA": {
+                                "username": "P2361EVQ2_6320", 
+                                "number": "6320"
+                            }, 
+                            "Alice_InterSite": {
+                                "username": "+33146502527"
+                            }, 
+                            "Bob_InterSite": {
+                                "username": "+33960833532"
+                            }, 
+                            "Alice_InterSite_noSDA": {
+                                "username": "P2361EVQ2_6321", 
+                                "number": "6321"
+                            }
+                        }, 
+                        "name": "2361EVQ2", 
+                        "CallingLineIDGroupName": "CLID_2361EVQ2"
+                    }, 
+                    "site_1": {
+                        "CallingLineIDGroupNumber": "0146502512", 
+                        "LocationDialingCode": "83", 
+                        "users": {
+                            "Charlie": {
+                                "username": "+33960833049"
+                            }, 
+                            "Dave_SAC": {
+                                "username": "+33960833579"
+                            }, 
+                            "Alice": {
+                                "username": "+33960833530"
+                            }, 
+                            "Alice_noSDA": {
+                                "username": "P2361EVQ1_6310", 
+                                "number": "6310"
+                            }, 
+                            "Bob": {
+                                "username": "+33960833531"
+                            }, 
+                            "Bob_RCV_CFC": {
+                                "username": "+33960833539"
+                            }, 
+                            "Bob_SAC": {
+                                "username": "+33960833577"
+                            }, 
+                            "Charlie_SAC": {
+                                "username": "+33960833578"
+                            },
+                            "Charlie": {
+                                "username": "+33960833534"
+                            }, 
+                            "Bob_Short_Target": {
+                                "username": "+33146502523"
+                            }, 
+                            "Bob_noSDA": {
+                                "username": "P2361EVQ1_6311", 
+                                "number": "6311"
+                            }, 
+                            "Erin": {
+                                "username": "+33146502518"
+                            }, 
+                            "Dave": {
+                                "username": "+33146502517"
+                            }, 
+                            "Alice_SAC": {
+                                "username": "+33960833576"
+                            }, 
+                            "Bob_noSDA_Short": {
+                                "username": "P2361EVQ1_6312", 
+                                "number": "6312", 
+                                "target": "Bob_Short_Target"
+                            }, 
+                            "Charlie_CFC": {
+                                "username": "+33960833536"
+                            }
+                        }, 
+                        "name": "2361EVQ1", 
+                        "CallingLineIDGroupName": "CLID_2361EVQ1"
+                    }, 
+                    "virtual": {
+                        "name": "virtual", 
+                        "users": {
+                            "Bob_Abbreviated": {
+                                "username": "3212", 
+                                "target": "Bob_Abbreviated_Target", 
+                                "virtual": "true"
+                            }
+                        }
+                    }
+                }, 
+                "name": "LPRISMEVQ1"
+            }, 
+            "enterprise_2": {
+                "CID": 0, 
+                "sites": {
+                    "site_1": {
+                        "CallingLineIDGroupNumber": "0146502533", 
+                        "LocationDialingCode": "21", 
+                        "users": {
+                            "Bob_InterEnterprise_noSDA": {
+                                "username": "P2361EVQ3_6331"
+                            }, 
+                            "Alice_InterEnterprise": {
+                                "username": "+33146502550"
+                            }, 
+                            "Bob_InterEnterprise": {
+                                "username": "+33960833532"
+                            }, 
+                            "Alice_InterEnterprise_noSDA": {
+                                "username": "P2361EVQ3_6330"
+                            }, 
+                            "Bob_Abbreviated_Target": {
+                                "username": "+33146502538"
+                            }
+                        }, 
+                        "name": "2361EVQ3", 
+                        "CallingLineIDGroupName": "CLID_2361EVQ3"
+                    }
+                }, 
+                "name": "LPRISMEVQ2"
+            }
+        }, 
+        "main": {
+            "profile": "ims", 
+            "platform_name": "BTelu", 
+            "domain": "sip.osp.com", 
+            "local_port_policy": 0, 
+            "platform_version": "val60", 
+            "proxy": "80.12.197.168:5060", 
+            "ApplicationServerUrl": "http://10.198.236.221:83/Login", 
+            "password": "nsnims2008", 
+            "platform_dir": "/opt/wheezyvalid", 
+            "easy_runner": "SypRunner"
+        }, 
+        "FeatureAccessCode": {
+            "+DVMT": [
+                "*55", 
+                "Direct Voice Mail Transfer"
+            ], 
+            "-CWP": [
+                "*431*", 
+                "Call Waiting Persistent Deactivation"
+            ], 
+            "+CFB": [
+                "74*2", 
+                "CFB Activation , CallForward Busy Activation"
+            ], 
+            "-CFS": [
+                "*271*", 
+                "Call Forwarding Selective Activation"
+            ], 
+            "+ExAOin": [
+                "#65", 
+                "Executive-Assistant Opt-in"
+            ], 
+            "-CLIR": [
+                "#3651", 
+                "Call Line ID Delivery overiding , per call when permanent Line Identity Restriction"
+            ], 
+            "-CFU": [
+                "71*0", 
+                "Call Forward Always Deactivation"
+            ], 
+            "+CFU": [
+                "71*", 
+                "CFA Activation Call Forward Always"
+            ], 
+            "-CFA": [
+                "71*0", 
+                "Call Forward Always Deactivation"
+            ], 
+            "+CFA": [
+                "71*", 
+                "CFA Activation Call Forward Always"
+            ], 
+            "+DND": [
+                "*78", 
+                "Do Not Disturb Activation"
+            ], 
+            "-DND": [
+                "*79", 
+                "Do Not Disturb DeActivation"
+            ], 
+            "+CFS": [
+                "*270*", 
+                "Call Forwarding Selective Activation"
+            ], 
+            "-CFB": [
+                "74*0", 
+                "CFB DeActivation , CallForward Busy DeActivation"
+            ], 
+            "-LC": [
+                "*13", 
+                "Location Control deactivation"
+            ], 
+            "+LC": [
+                "*12", 
+                "Location Control activation"
+            ], 
+            "+ExACP": [
+                "#63", 
+                "Executive-Assistant Call Push"
+            ], 
+            "+CFUV": [
+                "74*4", 
+                "CFUV Activation,    Call Forward Not Available Activation"
+            ], 
+            "-CFUV": [
+                "74*0", 
+                "CFUV DeActivation,    Call Forward Not Available DeActivation"
+            ], 
+            "+SD100": [
+                "*75", 
+                "Speed Dial 100"
+            ], 
+            "+ExAIC": [
+                "#64", 
+                "Executive-Assistant Initiate Call"
+            ], 
+            "+CB": [
+                "*15", 
+                "CAll Bridge"
+            ], 
+            "+DCPup": [
+                "*41", 
+                "Directed Call Pickup"
+            ], 
+            "+CPup": [
+                "*41*", 
+                "Call Pickup"
+            ], 
+            "+CLIR": [
+                "*3651", 
+                "Call Line ID Delivery Blocking , per call, or Call Line Identity Restriction"
+            ], 
+            "?CWP": [
+                "*53*", 
+                "Call Waiting Interrogation"
+            ], 
+            "+CPR": [
+                "*88", 
+                "Call Park Retrieve"
+            ], 
+            "+CP": [
+                "*62", 
+                "Call Park"
+            ], 
+            "+CR": [
+                "*31", 
+                "Call Return activation"
+            ], 
+            "-CR": [
+                "*311*", 
+                "Call Return deactivation (Number Deletion)"
+            ], 
+            "+ACR": [
+                "*77", 
+                "Anonymous Call Rejection activation"
+            ], 
+            "+BAE164D": [
+                "*14", 
+                "Broadworks Anywhere E.164 Dialing"
+            ], 
+            "-ACR": [
+                "*87", 
+                "Anonymous Call Rejection deactivation"
+            ], 
+            "-CFNR": [
+                "74*0", 
+                "CFNR DeActivation,    Call Forward Not Reachable DeActivation"
+            ], 
+            "+SD8": [
+                "*74", 
+                "Speed Dial 8"
+            ], 
+            "+CWP": [
+                "*43*", 
+                "Call Waiting Persistent Activation"
+            ], 
+            "+LNR": [
+                "*33", 
+                "Last Number Redial"
+            ], 
+            "+CFNA": [
+                "74*3", 
+                "CFNA Activation , Call Forward No Answer Activation"
+            ], 
+            "?ACR": [
+                "*52*", 
+                "Anonymous Call Rejection Interrogation"
+            ], 
+            "-CFNA": [
+                "74*0", 
+                "CFNA DeActivation , Call Forward No Answer DeActivation"
+            ], 
+            "?CFNR": [
+                "*242*", 
+                "CFNR Interrogation,    Call Forward Not Reachable Interrogation"
+            ], 
+            "+ExAOout": [
+                "#66", 
+                "Executive-Assistant Opt-out"
+            ], 
+            "+CFNR": [
+                "74*5", 
+                "CFNR Activation,    Call Forward Not Reachable Activation"
+            ]
+        }, 
+        "destinations": {
+            "wrong_Sid_E1S1": "112527", 
+            "wrong_Sid_E1S2": "122518", 
+            "Alice_SD_4": 4, 
+            "wrong_PrivateNumber": "112527", 
+            "Alice_SD_3": 3, 
+            "Alice_SD_2": 2, 
+            "Alice_noSDA_SD_3": 3, 
+            "wrong_Extension": "00000", 
+            "unallocatedNumbers": [
+                113333, 
+                122222, 
+                26626340, 
+                2517456, 
+                112190
+            ], 
+            "Alice_noSDA_SD_2": 2, 
+            "wrong_FeatureAccessCode_1": "*100", 
+            "sharp": "#", 
+            "wrong_FeatureAccessCode_2": "*72", 
+            "unallocatedNumber_1": "113333", 
+            "Alice_noSDA_SD_4": 4
+        }
+    }
+}

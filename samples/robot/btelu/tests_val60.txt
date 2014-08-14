@@ -1,0 +1,119 @@
+*** Settings ***
+Documentation     launch with pybot -vplatform_name:? -vplatform_version:?
+...
+
+Resource   ../common.txt
+Resource   platform.txt
+
+Suite Setup  init suite
+Test Setup 	init pilot
+Test Teardown 	shutdown pilot
+
+
+*** Variables ***
+# the variable name must be given on the command line
+${platform_name}= 	btelu
+${platform_version}=	btelu_val60
+
+#${pilot_mode}=  dry
+${pilot_mode}=  normal
+
+@{require_user_capabilities}=  Alice  Bob  Bob_InterSite
+@{require_call_format_capabilities}=  sid_ext
+@{require_feature_access_code_capabilities}=  CFA  CFB
+
+*** keywords ***
+
+
+*** Test Cases ***
+
+"00-clean"
+    [Template]  Unit CallFeatureAccessCode
+
+    Alice           -CFU
+    Alice           -CFB
+    Alice_SAC       -CFU
+    Alice_SAC       -CFB
+
+    Bob             -CFU
+    Bob             -CFB
+    Bob_SAC         -CFU
+    Bob_SAC         -CFB
+    Bob_InterSite    -CFU
+    Bob_InterSite    -CFB
+    Bob_RCV_CFC     -CFU
+    Bob_RCV_CFC     -CFB
+
+    Charlie_SAC     -CFU
+    Charlie_SAC     -CFB
+    Charlie_CFU     -CFU
+    Charlie_CFU     -CFB
+    Charlie_CFC     -CFU
+    Charlie_CFC     -CFB
+
+"00-config"
+    [Template]  Unit CallFeatureAccessCode
+    Charlie_CFU     +CFU    Bob     national
+    Charlie_CFU     +CFNR   Bob     national
+
+    Charlie_CFC     +CFB    Bob     national
+    Charlie_CFC     +CFNA   Bob_RCV_CFC     national
+    Charlie_CFC     +CFNR   Bob_RCV_CFC     national
+    Charlie_CFC     +CFUV   Bob_RCV_CFC     national
+
+"01BasicCalls/BC01SuccessfulCalls"
+    Unit AB_REGISTER_A_CALL_B_PLAY_BYE    Alice    Bob    universal
+    Unit AB_REGISTER_A_CALL_B_PLAY_BYE    Alice    Bob_InterSite    universal
+    Unit AB_REGISTER_A_CALL_B_PLAY_BYE    Bob_InterSite    Alice    universal
+    Unit AB_REGISTER_A_CALL_B_PLAY_BYE    Alice    Bob    sid_ext
+
+"01BasicCalls/BC02UnsuccessfulCalls/03-NotAnswer"
+    Unit 5691    Alice    Bob    universal
+
+"02-CallForwarding/01-CallForwardUnconditional/01-CFA-InternationalFormat+33"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFU 	Charlie_SAC 	national
+    Unit CallForwardAlways    Alice_SAC    Bob_SAC    Charlie_SAC    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFU
+
+"02-CallForwarding/02-CallForwardBusy"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFB 	Charlie_SAC 	national
+    Unit CallForwardBusy    Alice_SAC    Bob_SAC    Charlie_SAC    Dave_SAC    universal    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFB
+
+"02-CallForwarding/03-CFNoReply"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFNA 	Charlie_SAC 	national
+    Unit CallForwardNotAnswered    Alice_SAC    Bob_SAC    Charlie_SAC    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFNA
+
+"02-CallForwarding/04-CFUnreachable/01-User-Phone-Disconected"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFNR 	Charlie_SAC 	national
+    Unit CallForwardNotRegistred_main    Alice_SAC    Bob_SAC    Charlie_SAC    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFNR
+
+"02-CallForwarding/04-CFUnreachable/02-User_Prence_desactivate"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFNR 	Charlie_SAC 	national
+    Unit CallForwardNotRegistred_main    Alice_SAC    Bob_SAC    Charlie_SAC    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFNR
+
+"02-CallForwarding/05-CFUnavailable"
+    Unit CallFeatureAccessCode    Bob_SAC    +CFUV 	Charlie_SAC 	national
+    Unit CallForwardUnavailable    Alice_SAC    Bob_SAC    Charlie_SAC    universal
+    Unit CallFeatureAccessCode    Bob_SAC    -CFUV
+
+"11-CallForwarding/01-CallForwardUnconditional"
+    Unit CallForwardAlways    Alice    Charlie_CFU    Bob    universal
+
+"11-CallForwarding/02-CallForwardBusy"
+    Unit CallForwardBusy    Alice    Charlie_CFC    Bob    Bob_InterSite    universal    universal
+
+"11-CallForwarding/03-CFNoReply"
+    Unit CallForwardNotAnswered    Alice    Charlie_CFC    Bob_RCV_CFC    universal
+
+"11-CallForwarding/04-CFUnreachable/01-User-Phone-Disconected"
+    Unit CallForwardNotRegistred_main    Alice    Charlie_CFC    Bob_RCV_CFC    universal
+
+"11-CallForwarding/04-CFUnreachable/02-User_Prence_desactivate"
+    Unit CallForwardNotRegistred_main    Alice    Charlie_CFU    Bob    universal
+
+"11-CallForwarding/05-CFUnavailable"
+    Unit CallForwardUnavailable    Alice    Charlie_CFC    Bob_RCV_CFC    universal

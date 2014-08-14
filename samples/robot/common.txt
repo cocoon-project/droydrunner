@@ -1,0 +1,84 @@
+*** Settings ***
+Documentation     meta check platform capabilities
+...
+
+*** Variables ***
+${TEST_HOME}=  /Users/cocoon/var/robot
+#${TEST_HOME}=  /Users/cocoon/shared/sypnode/var/robot
+${platform_configuration_file}=  ${TEST HOME}/${platform_name}/platform.json
+
+
+*** Keywords ***
+
+########
+init suite
+	# check platform capablities with test capablities requirements
+	setup pilot 	${platform_name} 	${platform_version} 	${platform_configuration_file}
+    meta check capabilities
+
+init pilot
+	setup pilot 	${platform_name} 	${platform_version}  ${platform_configuration_file}
+	run keyword if   '${pilot_mode}'=='dry'  set pilot dry mode
+
+shutdown pilot
+	close session
+
+
+########## meta keywords
+
+meta check user capabilities
+	dummy operation
+
+meta check call format capabilities
+	dummy operation
+
+meta check feature access code capabilities
+	dummy operation
+
+
+meta check capabilities
+	meta check user capabilities
+	meta check call format capabilities
+	meta check feature access code capabilities
+
+
+############### units and macros
+
+Unit dummy operation
+	dummy operation
+
+
+
+Unit overloaded operation
+	log 	unit overloaded operation from units_common
+	dummy operation
+
+
+
+# Unit Simple Call
+# 	[arguments] 	${userA}	${userB} 	${format}
+# 	[Documentation] 	$userA call $userB with a specific $format
+
+# 	Open session	${userA}	${userB}
+#     Call user   ${userA}   ${userB}   ${format}
+#     Wait incoming Call  ${userB}
+#     Answer call ringing     ${userB}
+#     #Wait ringing    ${userA}
+#     Answer call ok     ${userB}
+
+#     Wait Call confirmed     ${userA}
+
+#     Hangup  ${userA}
+
+#     Close Session
+
+
+
+
+
+Unit Dummy
+    [arguments]     ${userA}    ${userB}    ${userC}    ${userD}    ${call_format}
+
+    Open Session     ${userA}    ${userB}    ${userC}    ${userD}
+    Close Session
+

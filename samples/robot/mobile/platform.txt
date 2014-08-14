@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     platform settings for platform btelu
+...
+
+Library 	droydrunner.robot_plugin.Pilot
+
+
+*** Variables ***
+${platform_name}=	mobile
+
+@{all_call_formats}=  sid_ext  national  international  universal
+
+
+*** Keywords ***
+
