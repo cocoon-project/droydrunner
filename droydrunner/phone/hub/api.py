@@ -230,8 +230,8 @@ class NativeClient(IClient):
         :param accounts:
         :return:
         """
-        if self._session:
-            return self._session
+        #if self._session:
+        #    return self._session
         # save session data
         self._session = PhoneSession(self._store,**accounts)
 

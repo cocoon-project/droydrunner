@@ -30,6 +30,7 @@ def test_http_api():
 
     with HttpClient('http://127.0.0.1:5001') as c :
 
+    #with HttpClient('http://192.168.1.23:49153') as c :
         # users = {
         #     'Alice' : { 'tel': '06..'   },
         #     'Bob' : { 'tel': '01'}

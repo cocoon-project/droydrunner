@@ -95,7 +95,7 @@ class NativeClient():
         :param exc_tb:
         :return:
         """
-        s#elf._store.close()
+        self._store.close()
 
 
     def log(self,msg):
