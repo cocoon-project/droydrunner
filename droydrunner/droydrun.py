@@ -22,7 +22,7 @@ import sys
 from copy import copy
 from docopt import docopt
 
-from __init__ import __version__ as version
+from droydrunner.__init__ import __version__ as version
 
 
 
@@ -46,7 +46,7 @@ except ImportError:
 
 
 if uiautomator and flask:
-    from phone.hub.server.first import app as phone_hub_app
+    from droydrunner.phone.hub.server.first import app as phone_hub_app
 else:
     phone_hub_app = None
 
