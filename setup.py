@@ -22,10 +22,12 @@ setup(
     author_email='tordjman.laurent@gmail.com',
     description='test automation tool for android phones',
     long_description=read('README'),
+    entry_points = {
+    'console_scripts': ['droydrun=droydrunner.droydrun:main'],
+    },
     #include_package_data=True,
     #data_files=[('','requirements.txt'),],
     #package_data= {'doc':['*.htm*','*.yaml']},
     install_requires=[
-        'uiautomator',
     ]
 )
