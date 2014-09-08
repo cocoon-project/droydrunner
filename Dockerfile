@@ -19,6 +19,9 @@ RUN python setup.py install
 ADD droydrunner/droydrun.py /opt/python/bin/droydrun
 RUN chmod +x /opt/python/bin/droydrun
 
+ENV PATH /opt/python/bin:$PATH
+
+
 RUN apt-get clean
 EXPOSE 5000
 #CMD python /usr/local/bin/droydrun.py phone hub server start
