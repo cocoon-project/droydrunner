@@ -1,4 +1,4 @@
-#!/user/bin/env python
+#!/usr/bin/env python
 """
 droydrun.py  tools to test automating on android
 
