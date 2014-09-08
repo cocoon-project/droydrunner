@@ -13,6 +13,7 @@ ADD ./requirements.txt /tmp/droydrunner/
 RUN pip install -r requirements.txt
 
 # install droydrunner
+ADD ./README.md /tmp/droydrunner
 RUN python setup.py install
 
 RUN apt-get clean
