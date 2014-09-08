@@ -9,12 +9,15 @@ RUN git clone https://github.com/cocoon-project/droydrunner.git /tmp/droydrunner
 WORKDIR /tmp/droydrunner
 
 # install dependancies
-ADD ./requirements.txt /tmp/droydrunner/
+#ADD ./requirements.txt /tmp/droydrunner/
 RUN pip install -r requirements.txt
 
 # install droydrunner
-ADD ./README.md /tmp/droydrunner/
+#ADD ./README.md /tmp/droydrunner/
 RUN python setup.py install
+
+ADD droydrunner/droydrun.py /opt/python/bin/droydrun
+RUN chmod +x /opt/python/bin/droydrun
 
 RUN apt-get clean
 EXPOSE 5000
