@@ -1,3 +1,5 @@
 
-
 uiautomator>=0.1.30
+Flask
+requests
+docopt

@@ -7,8 +7,14 @@ RUN apt-get install -y  -q git
 RUN git clone https://github.com/cocoon-project/droydrunner.git /tmp/droydrunner
 
 WORKDIR /tmp/droydrunner
+
+# install dependancies
+ADD ./requirements.txt /tmp/droydrunner/
+RUN pip install -r requirements.txt
+
+# install droydrunner
 RUN python setup.py install
 
 RUN apt-get clean
 EXPOSE 5000
-CMD python /usr/local/bin/droydrun.py phone hub server start
+#CMD python /usr/local/bin/droydrun.py phone hub server start
