@@ -23,7 +23,7 @@ setup(
     description='test automation tool for android phones',
     long_description=read('README.md'),
     entry_points = {
-        'console_scripts': ['droydrun=droydrunner.droydrun:main'],
+        'console_scripts': ['droydrun=droydrunner.droydrun:main',],
     },
     #include_package_data=True,
     #data_files=[('','requirements.txt'),],
