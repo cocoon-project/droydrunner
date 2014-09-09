@@ -89,16 +89,183 @@ def test_native_api():
         c.close_session()
 
 
+def ussd_123_send(session,serial,choice):
+    """
+
+
+    :param choice:
+    :return:
+    """
+    input_field_id = { 'resourceId':'com.android.phone:id/input_field'}
+    send_button_id = {'resourceId':'android:id/button1'}
+
+    # select choice
+    session.select(serial,action='set_text', action_args=[str(choice),] ,**input_field_id)
+
+    # send
+    session.select(serial,action='click',**send_button_id)
+
+    # wait update
+    session.command(serial,action='wait.update')
+
+
+    #input_field = agent.device( resourceId ='com.android.phone:id/input_field')
+    #input_field.set_text(str(choice))
+    # send
+    #send_button = agent.device(resourceId='android:id/button1')
+    #send_button.click()
+    # wait next screen
+    #d1.device.wait.update()
+    return
+
+def test_native_api_low_level():
+
+    alice = "388897e5"
+
+
+    user = { "388897e5": users["388897e5"]}
+
+    with NativeClient() as c :
+
+        # users = {
+        #     'Alice' : { 'tel': '06..'   },
+        #     'Bob' : { 'tel': '01'}
+        # }
+
+
+
+
+        session = c.open_session( **user)
+
+
+        c.call_number(alice,"#123#")
+
+        # get the message USSD code running
+        message = c.select(alice,resourceId= 'android:id/message', className = 'android.widget.TextView',action='text')
+        print message
+
+        # wait screen update
+        c.command(alice,action='wait.update')
+
+
+        # wait to see the dialog message
+        dialog_id = 'com.android.phone:id/dialog_message'
+
+        c.select(alice,  action='wait.exists', resourceId=dialog_id )
+        # print message main menu
+        print c.select(alice,resourceId=dialog_id , action = 'text')
+
+
+        # select 1 :detail suivi conso
+        ussd_123_send(c,alice,1)
+
+        # select 1 :Appels
+        ussd_123_send(c,alice,1)
+
+
+        # print message conso appel
+        print c.select(alice,action='text',resourceId=dialog_id)
+
+
+        time.sleep(5)
+
+
+        # select 0 : Retour
+        ussd_123_send(c,alice,0)
+
+        # select 8 Retour
+        ussd_123_send(c,alice,8)
+
+
+        # send cancel
+        c.select(alice,action='click' , resourceId='android:id/button2')
+
+
+        c.close_session()
+
+
+
+def test_http_api_low_level():
+
+    alice = "388897e5"
+
+
+    user = { "388897e5": users["388897e5"]}
+
+    #with HttpClient('http://192.168.1.23:49153') as c :
+    with HttpClient('http://localhost:5001') as c :
+        # users = {
+        #     'Alice' : { 'tel': '06..'   },
+        #     'Bob' : { 'tel': '01'}
+        # }
+
+
+
+
+        session = c.open_session( **user)
+
+
+        c.call_number(alice,"#123#")
+
+        # get the message USSD code running
+        #message = c.select(alice,resourceId= 'android:id/message', className = 'android.widget.TextView',action='text')
+        #print message
+
+        # wait screen update
+        c.command(alice,action='wait.update')
+
+
+        # wait to see the dialog message
+        dialog_id = 'com.android.phone:id/dialog_message'
+
+        c.select(alice,  action='wait.exists', resourceId=dialog_id )
+        # print message main menu
+        print c.select(alice,resourceId=dialog_id , action = 'text')
+
+
+        # select 1 :detail suivi conso
+        ussd_123_send(c,alice,1)
+
+        # select 1 :Appels
+        ussd_123_send(c,alice,1)
+
+
+        # print message conso appel
+        print c.select(alice,action='text',resourceId=dialog_id)
+
+
+        time.sleep(5)
+
+
+        # select 0 : Retour
+        ussd_123_send(c,alice,0)
+
+        # select 8 Retour
+        ussd_123_send(c,alice,8)
+
+
+        # send cancel
+        c.select(alice,action='click' , resourceId='android:id/button2')
+
+
+        c.close_session()
+
+
+
+
 
 if __name__=='__main__':
 
 
     #test_native_api()
+    test_native_api_low_level()
+
+
 
     # dont forget to start server
 
-    test_http_api()
-
+    #test_http_api()
+    #test_http_api_low_level()
 
 
     print

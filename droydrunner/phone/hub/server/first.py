@@ -197,6 +197,52 @@ class DroydAgents(CollectionWithOperationApi):
         return "hangup_call: %s" % request.url
 
 
+    def op_select(self,**kwargs):
+        """
+
+        """
+        r = request
+        data = r.json
+        agent = kwargs['item']
+
+        user,session_id = self.agent_to_user_session(agent)
+        session=db.get('sessions',session_id)
+
+
+        ## CALL the native interface
+        rs = api.select(user,**data)
+
+        response_data = { 'response': rs}
+        return json.dumps(response_data)
+
+
+        #return "select: %s" % request.url
+
+
+
+    def op_command(self,**kwargs):
+        """
+        """
+        r = request
+        data = r.json
+        agent = kwargs['item']
+
+        user,session_id = self.agent_to_user_session(agent)
+        session=db.get('sessions',session_id)
+
+
+        ## CALL the native interface
+        rs = api.command(user,**data)
+
+        response_data = { 'response': rs}
+        return json.dumps(response_data)
+
+        #return "command: %s" % request.url
+
+
+
+
+
 class DroydSessions(CollectionWithOperationApi):
     """
 

@@ -268,6 +268,68 @@ class Client(object):
 
         return response
 
+    # low level api
+
+       # low levels
+    def select(self,user,selector=None,action=None,action_args=None,**kwargs):
+        """
+
+
+        :param selector:
+        :param action: can be click , text , exists , set_text , wait.update wait.exists , info ...
+        :param action_args:
+        :param kwargs:  can be any of  text, resourceId, index, instance ,className ,packageName ...
+        :return:
+
+
+
+        """
+        #raise NotImplementedError
+        agent = self._session.current_session()[user]
+
+        uri = '/agents/%s/select' % agent
+
+        data = dict(selector=selector,action=action,action_args=action_args)
+        data.update(kwargs)
+        data = json.dumps(data)
+        response = self._web_session.post(self.url(uri),data=data)
+
+        try:
+            response_data=response.json()
+            return response_data['response']
+        except ValueError:
+            return None
+
+
+
+
+
+    def command(self,user,action,**kwargs):
+        """
+
+
+        :param user:
+        :param action: one of wait.update ...open.notification
+        :param args:
+        :return:
+        """
+        #raise NotImplementedError
+        agent = self._session.current_session()[user]
+
+        uri = '/agents/%s/command' % agent
+
+        data = dict(action=action,**kwargs)
+        data.update(kwargs)
+        data = json.dumps(data)
+        response = self._web_session.post(self.url(uri),data=data)
+
+        try:
+            response_data=response.json()
+            return response_data['response']
+        except ValueError:
+            return None
+
+
 HttpClient=Client
 
 

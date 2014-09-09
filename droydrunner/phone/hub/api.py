@@ -370,3 +370,123 @@ class NativeClient(IClient):
         #return  self.relay.execute(user,'phone.hangup')
         return self.agents[user].phone.end_call()
 
+
+
+    # low levels
+    def select(self,user,selector=None,action=None,action_args=None,**kwargs):
+        """
+
+
+        :param selector:
+        :param action: can be click , text , exists , set_text , wait.update wait.exists , info ...
+        :param action_args:
+        :param kwargs:  can be any of  text, resourceId, index, instance ,className ,packageName ...
+        :return:
+
+
+
+        """
+        if selector != None:
+            raise NotImplementedError('selection by custom selector not available')
+        # get the selector
+        selected =  self.agents[user].device(**kwargs)
+        if not selected.exists:
+            raise ValueError('selector does not exists: %s' , str(kwargs))
+        # determine action
+        if not action:
+            # not an action : return selector.info
+            action = 'info'
+
+        if not '.' in action:
+            # simple action
+            #if action in ['text','info','exists']:
+            # attributes :
+            try:
+                action_attribute = getattr(selected,action)
+            except AttributeError:
+                raise AttributeError('unkwown selector action: %s ' % action)
+            if callable(action_attribute):
+                # a method
+                if action_args :
+                    # call with args
+                    return action_attribute(*action_args)
+                else:
+                    # call withour args
+                    return action_attribute()
+            else:
+                # an attribute
+                return action_attribute
+        else:
+            # composite action eg wait.update wait.exists
+            first,second = action.split('.')
+           # extract first
+            try:
+                first_attr = getattr(selected,first)
+            except:
+                raise ValueError('unkwown action:%s' % action)
+            # extract second
+            try:
+                second_attr = getattr(first_attr,second)
+            except:
+                raise ValueError('unkwown action:%s' % action)
+            # determine kind of action (attribute , method , method with args
+            action_attribute = second_attr
+            if callable(action_attribute):
+                # a method
+                if action_args :
+                    # call with args
+                    return action_attribute(*action_args)
+                else:
+                    # call withour args
+                    return action_attribute()
+            else:
+                # an attribute
+                return action_attribute
+
+    def command(self,user,action,*args,**kwargs):
+        """
+
+
+        :param user:
+        :param action: one of wait.update ...open.notification
+        :param args:
+        :return:
+        """
+        agent_device =  self.agents[user].device
+
+        if not '.' in action:
+            # simple action
+            if action in ['text','info','exists']:
+                # attributes :
+                try:
+                    action_attribute = getattr(agent_device,action)
+                except AttributeError:
+                    raise AttributeError('unkwown selector action: %s ' % action)
+                if callable(action_attribute):
+                    # a method
+                    return action_attribute(*args,**kwargs)
+                else:
+                    # an attribute
+                    return action_attribute
+        else:
+            # composite action eg wait.update wait.exists
+            first,second = action.split('.')
+           # extract first
+            try:
+                first_attr = getattr(agent_device,first)
+            except:
+                raise ValueError('unkwown action:%s' % action)
+            # extract second
+            try:
+                second_attr = getattr(first_attr,second)
+            except:
+                raise ValueError('unkwown action:%s' % action)
+            # determine kind of action (attribute , method , method with args
+            action_attribute = second_attr
+            if callable(action_attribute):
+                # a method
+                return action_attribute(*args,**kwargs)
+            else:
+                # an attribute
+                return action_attribute
+
