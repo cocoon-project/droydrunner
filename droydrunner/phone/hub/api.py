@@ -373,6 +373,28 @@ class NativeClient(IClient):
 
 
     # low levels
+    def wait(self,user,action,**kwargs):
+        """
+
+        :param user:
+        :param action:  idle or update
+        :param kwargs:
+        :return:
+        """
+        agent =  self.agents[user]
+
+        if action == 'update':
+            return agent.device.wait.update(**kwargs)
+        elif action == 'idle':
+            return agent.device.wait.idle(**kwargs)
+        else:
+            raise RuntimeError("unkwown command device.wait.%s" % action)
+
+
+
+
+
+
     def select(self,user,selector=None,action=None,action_args=None,**kwargs):
         """
 

@@ -270,7 +270,33 @@ class Client(object):
 
     # low level api
 
-       # low levels
+    # low levels
+     # low levels
+    def wait(self,user,action,**kwargs):
+        """
+
+        :param user:
+        :param action:  idle or update
+        :param kwargs:
+        :return:
+        """
+        agent = self._session.current_session()[user]
+
+        uri = '/agents/%s/wait' % agent
+
+        data = dict(action=action)
+        data.update(kwargs)
+        data = json.dumps(data)
+        response = self._web_session.post(self.url(uri),data=data)
+
+        try:
+            response_data=response.json()
+            return response_data['response']
+        except ValueError:
+            return None
+
+
+
     def select(self,user,selector=None,action=None,action_args=None,**kwargs):
         """
 

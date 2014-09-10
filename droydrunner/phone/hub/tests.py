@@ -108,6 +108,8 @@ def ussd_123_send(session,serial,choice):
     # wait update
     session.command(serial,action='wait.update')
 
+    time.sleep(2)
+
 
     #input_field = agent.device( resourceId ='com.android.phone:id/input_field')
     #input_field.set_text(str(choice))
@@ -146,6 +148,8 @@ def test_native_api_low_level():
 
         # wait screen update
         c.command(alice,action='wait.update')
+
+
 
 
         # wait to see the dialog message
@@ -193,7 +197,7 @@ def test_http_api_low_level():
     user = { "388897e5": users["388897e5"]}
 
     #with HttpClient('http://192.168.1.23:49153') as c :
-    with HttpClient('http://localhost:5001') as c :
+    with HttpClient('http://localhost:5000') as c :
         # users = {
         #     'Alice' : { 'tel': '06..'   },
         #     'Bob' : { 'tel': '01'}
@@ -212,7 +216,11 @@ def test_http_api_low_level():
         #print message
 
         # wait screen update
-        c.command(alice,action='wait.update')
+        #c.command(alice,action='wait.update')
+
+        c.wait(alice,action='update',timeout=2000)
+
+        time.sleep(2)
 
 
         # wait to see the dialog message
@@ -258,14 +266,14 @@ if __name__=='__main__':
 
 
     #test_native_api()
-    test_native_api_low_level()
+    #test_native_api_low_level()
 
 
 
     # dont forget to start server
 
     #test_http_api()
-    #test_http_api_low_level()
+    test_http_api_low_level()
 
 
     print

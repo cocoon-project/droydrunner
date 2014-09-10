@@ -197,6 +197,26 @@ class DroydAgents(CollectionWithOperationApi):
         return "hangup_call: %s" % request.url
 
 
+
+    # low level operation
+    def op_wait(self,**kwargs):
+        """
+        """
+        r = request
+        data = r.json
+        agent = kwargs['item']
+
+        user,session_id = self.agent_to_user_session(agent)
+        session=db.get('sessions',session_id)
+
+
+        ## CALL the native interface
+        action = data.pop('action')
+        rs = api.wait(user,action,**data)
+
+        response_data = { 'response': rs}
+        return json.dumps(response_data)
+
     def op_select(self,**kwargs):
         """
 
@@ -343,7 +363,7 @@ def start():
     app.debug =True
 
     #app.run(host="127.0.0.1",port = 5001)
-    app.run(host="0.0.0.0",port = 5001)
+    app.run(host="0.0.0.0",port = 5000)
 
 def test_random():
 
