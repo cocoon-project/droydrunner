@@ -4,7 +4,8 @@ MAINTAINER cocoon.project@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq
 RUN apt-get install -y  -q git
-RUN git clone https://github.com/cocoon-project/droydrunner.git /tmp/droydrunner
+#RUN git clone https://github.com/cocoon-project/droydrunner.git /tmp/droydrunner
+RUN pip install git+git://github.com/cocoon-project/droydrunner.git
 
 WORKDIR /tmp/droydrunner
 
@@ -22,8 +23,8 @@ RUN python setup.py install
 #ENV PATH /opt/python/bin:$PATH
 
 # setup script for official python
-ADD droydrunner/droydrun.py /usr/bin/droydrun
-RUN chmod +x /usr/bin/droydrun
+#ADD droydrunner/droydrun.py /usr/bin/droydrun
+#RUN chmod +x /usr/bin/droydrun
 
 
 
