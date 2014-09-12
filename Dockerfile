@@ -16,10 +16,15 @@ RUN pip install -r requirements.txt
 #ADD ./README.md /tmp/droydrunner/
 RUN python setup.py install
 
-ADD droydrunner/droydrun.py /opt/python/bin/droydrun
-RUN chmod +x /opt/python/bin/droydrun
+# setup script for pyrun
+#ADD droydrunner/droydrun.py /opt/python/bin/droydrun
+#RUN chmod +x /opt/python/bin/droydrun
+#ENV PATH /opt/python/bin:$PATH
 
-ENV PATH /opt/python/bin:$PATH
+# setup script for official python
+ADD droydrunner/droydrun.py /usr/bin/droydrun
+RUN chmod +x /usr/bin/droydrun
+
 
 
 RUN apt-get clean

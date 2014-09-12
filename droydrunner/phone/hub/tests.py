@@ -196,8 +196,8 @@ def test_http_api_low_level():
 
     user = { "388897e5": users["388897e5"]}
 
-    #with HttpClient('http://192.168.1.23:49153') as c :
-    with HttpClient('http://localhost:5000') as c :
+    with HttpClient('http://192.168.1.23:49153') as c :
+    #with HttpClient('http://localhost:5000') as c :
         # users = {
         #     'Alice' : { 'tel': '06..'   },
         #     'Bob' : { 'tel': '01'}
