@@ -29,6 +29,14 @@ class UiConfiguration(object):
         self.platform_version=platform_version
         self.data=data
 
+    @property
+    def phone_hub(self):
+        """
+
+        :return:
+        """
+        return self.data['main']['phone_hub']
+
 
     def get_phone_config(self,device_id,kind="mobiles"):
         """

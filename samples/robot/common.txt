@@ -3,8 +3,12 @@ Documentation     meta check platform capabilities
 ...
 
 *** Variables ***
-${TEST_HOME}=  /Users/cocoon/var/robot
+#${TEST_HOME}=  /Users/cocoon/var/robot
 #${TEST_HOME}=  /Users/cocoon/shared/sypnode/var/robot
+#${TEST_HOME}=  /tests
+${TEST_HOME}=  /Users/cocoon/Documents/projects/UiAutomator/samples/robot
+
+
 ${platform_configuration_file}=  ${TEST HOME}/${platform_name}/platform.json
 
 

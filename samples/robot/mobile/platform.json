@@ -154,7 +154,7 @@
             "password": "nsnims2008", 
             "platform_dir": "/opt/wheezyvalid", 
             "easy_runner": "SypRunner",
-            "phone_hub" : "192.168.1.23:49153"
+            "phone_hub" : "http://192.168.1.23:49153"
         }, 
         "FeatureAccessCode": {
             "+DVMT": [

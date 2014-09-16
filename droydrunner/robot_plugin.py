@@ -11,7 +11,10 @@
 import json
 
 from droydrunner.uiconfig import UiConfiguration
-from droydrunner.phone.hub.api import NativeClient as PhoneHubNativeClient
+
+from droydrunner.phone.interface import PhoneHub
+
+#from droydrunner.phone.hub.api import NativeClient as PhoneHubNativeClient
 
 
 syp_ptf= dict(
@@ -100,7 +103,10 @@ class Pilot(object):
 
         #result = self._session= PhoneHubNativeClient(**self.conf['mobiles'])
 
-        self._session= PhoneHubNativeClient()
+        #self._session= PhoneHubNativeClient()
+        phonehub_url = self.ptf.phone_hub
+        self._session= PhoneHub(phonehub_url)
+
         result = self._session.open_session(**self.conf['mobiles'])
 
         # build a user confs from _userlist and platform config
@@ -141,7 +147,7 @@ class Pilot(object):
             return self._dry_return()
         #
         try :
-            self._session.close_session(result,error)
+            self._session.close_session()
         except AttributeError:
             raise
             pass

@@ -170,7 +170,7 @@ class Client(object):
         #self._session.content = response_data
         # save the session data
         self._session.current_session(response_data)
-        return
+        return response_data
 
 
     def close_session(self):
