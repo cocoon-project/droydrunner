@@ -153,7 +153,8 @@
             "ApplicationServerUrl": "http://10.198.236.221:83/Login", 
             "password": "nsnims2008", 
             "platform_dir": "/opt/wheezyvalid", 
-            "easy_runner": "SypRunner"
+            "easy_runner": "SypRunner",
+            "phone_hub" : "192.168.1.23:49153"
         }, 
         "FeatureAccessCode": {
             "+DVMT": [

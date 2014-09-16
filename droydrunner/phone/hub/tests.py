@@ -272,8 +272,8 @@ if __name__=='__main__':
 
     # dont forget to start server
 
-    #test_http_api()
-    test_http_api_low_level()
+    test_http_api()
+    #test_http_api_low_level()
 
 
     print
