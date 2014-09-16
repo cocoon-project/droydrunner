@@ -1,0 +1,12 @@
+jenkins:
+  config:
+    base: "/tests"
+    collection: mobile
+    passThreshold: 10.0
+    unstableThreshold: 50.0
+  jobs:
+    qualif:
+      name: tests_2_qualif.txt
+      description: "simple mobile calls"
+      parameters:
+        - --loglevel debug

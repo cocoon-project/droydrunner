@@ -60,3 +60,7 @@ target/
 # IDE
 .idea
 *.DS_Store
+
+samples/robot/mobile/log.html
+samples/robot/mobile/output.xml
+samples/robot/mobile/report.html
